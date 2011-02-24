@@ -1,0 +1,42 @@
+﻿{% extends 'base.html' %}
+{% load comments %}
+{% block content %}
+<div id="blog">
+{% for post in posts %}
+  {% get_comment_count for post as comment_count %}
+  {% get_comment_form for post as comment_form %}
+<h2>{{ post.title }}</h2>
+<p>{{ post.timestamp }}</p>
+<p>{{ post.body }}</p>
+<small onClick="onSmall({{ post.id }})" style="text-aling: right;">Комментарии: [{{ comment_count }}]</small>
+<div id="comment{{ post.id }}" style="display: none;">
+<form action="{% comment_form_target %}" method="post">{% csrf_token %}
+<table>
+  {{ comment_form }}
+  <tr>
+    <td></td>
+    <td><input type="submit" name="preview" class="submit-post" value="Preview"></td>
+  </tr>
+</table>
+</form>
+</div>
+{% endfor %}
+
+<p><small>Yunin Ivan 2010 &copy;</small></p>
+</div>
+<div id="news">
+<h2>Новости</h2>
+{% for new in news %}
+  {% get_comment_count for new as comment_count %}
+  {% get_comment_form  for new as comment_form %}
+  <p class="newstitle">{{ new.timestamp }}</p>
+  <small>{{ new.short_text }}</small>
+{% endfor %}
+</div>
+<div id="users">
+<h2>Пользователи</h2>
+{% for user in users %}
+  <p class="newstitle">{{ user.username }}:<small>{{ user.email }}</small></p>
+{% endfor %}
+</div>
+{% endblock%}

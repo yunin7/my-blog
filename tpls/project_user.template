@@ -1,0 +1,8 @@
+web_server_name=simpletrainru
+web_admin_name=Ruslan Popov
+web_admin_email=ruslan.popov@gmail.com
+
+express_may_emulate_if_offline=True
+express_may_logging=True
+express_gate_inform=127.0.0.1:19200
+express_gate_ticket=127.0.0.1:19200

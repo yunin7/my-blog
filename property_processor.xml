@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!-- Макрос для генерации файла конфигурации проекта -->
+<project name="property_processor">
+
+  <!-- создаём общий файл с параметрами для использования в процессе
+       фильтрации -->
+  <macrodef name="make_prop_file">
+    <attribute name="filename"/>
+
+    <sequential>
+      <propertyfile file="@{filename}">
+        <entry key="project_name" value="${project_name}"/>
+        <entry key="user_project_name" value="${project_name}${developer_suffix}"/>
+        <entry key="install_to" value="${install_to}"/>
+        <entry key="django_secretkey" value="${django_secretkey}"/>
+        <entry key="web_admin_name" value="${web_admin_name}"/>
+        <entry key="web_admin_email" value="${web_admin_email}"/>
+        <entry key="web_server_name" value="${web_server_name}"/>
+
+        <entry key="db_engine" value="'django.db.backends.${db_engine}'"/>
+      </propertyfile>
+
+      <!-- тип БД: sqlite -->
+      <if>
+        <equals arg1="${db_engine}" arg2="sqlite3"/>
+        <then>
+          <propertyfile file="@{filename}">
+            <entry key="db_name" value="rel('${db_name}')"/>
+            <entry key="db_host" value="''"/>
+            <entry key="db_port" value="''"/>
+            <entry key="db_user" value="''"/>
+            <entry key="db_pass" value="''"/>
+          </propertyfile>
+        </then>
+      </if>
+
+      <!-- тип БД: mysql -->
+      <!-- у mysql баз и пользователей много -->
+      <if>
+        <equals arg1="${db_engine}" arg2="mysql"/>
+        <then>
+          <propertyfile file="@{filename}">
+            <entry key="db_name" value="'${db_name}'"/>
+            <entry key="db_host" value="'${db_host}'"/>
+            <entry key="db_port" value="'${db_port}'"/>
+            <entry key="db_user" value="'${db_user}'"/>
+            <entry key="db_pass" value="'${db_pass}'"/>
+          </propertyfile>
+        </then>
+      </if>
+
+      <!-- тип БД: oracle -->
+      <!-- у oracle база данных одна, а схем много -->
+      <if>
+        <equals arg1="${db_engine}" arg2="oracle"/>
+        <then>
+          <propertyfile file="@{filename}">
+            <entry key="db_name" value="${db_name}${developer_suffix}"/>
+            <entry key="db_host" value="'${db_host}'"/>
+            <entry key="db_port" value="'${db_port}'"/>
+            <entry key="db_user" value="'${db_user}${developer_suffix}'"/>
+            <entry key="db_pass" value="'${db_pass}'"/>
+          </propertyfile>
+        </then>
+      </if>
+    </sequential>
+  </macrodef>
+
+</project>

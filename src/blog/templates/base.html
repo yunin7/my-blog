@@ -1,0 +1,69 @@
+﻿<html>
+<head>
+<style type='text/css'>
+body {
+color: #edf; 
+background: #740000;
+padding: 0em 5em;
+margin: 0;
+}
+
+h1 {
+padding: 2em 1em;
+background: #b90000;
+}
+
+h2 {
+color: #fffc03;
+border-bottom: 1px dotted #b90000;
+}
+
+p {
+}
+
+.comment {
+}
+
+#blog { 
+width: 70%;
+float: left;
+}
+
+#blog { 
+width: 70%;
+float: left;
+}
+
+#news {
+width: 25%;
+float: right;
+}
+
+#users {
+width: 25%;
+float: right;
+}
+
+#news h2 {
+border: 0px;
+border-bottom: 1px dotted #b90000;
+}
+
+.newstitle {
+color: yellow;
+}
+
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script>
+function onSmall(id) {
+  $("#comment"+id).slideToggle('slow');
+};
+</script>
+</head>
+    <body>
+	    <h1>Семейный блог</h1>
+		{% block content %}
+		{% endblock %}
+    </body>
+</html>

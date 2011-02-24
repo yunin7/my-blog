@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!-- Макросы для работы с fossil - распределённой системой контроля версий (СКВ). -->
+<project name="vcs_fossil">
+
+  <!-- Макрос для выполнения команды СКВ -->
+  <macrodef name="vcs_call">
+    <attribute name="command"/>
+    <attribute name="related"/>
+
+    <sequential>
+      <exec executable="fossil" failonerror="true">
+        <arg line="@{command} @{related}"/>
+      </exec>
+    </sequential>
+  </macrodef>
+
+  <!-- Макрос для выполнения синхронизации репозитория, т.е. push-and-pull. -->
+  <macrodef name="vcs_sync">
+    <attribute name="url"/>
+    <sequential>
+      <vcs_call command="sync" related="@{url}"/>
+    </sequential>
+  </macrodef>
+
+  <!-- Макрос для передачи изменений из своего репозитория в удалённый. -->
+  <macrodef name="vcs_push">
+    <attribute name="url"/>
+    <sequential>
+      <vcs_call command="push" related="@{url}"/>
+    </sequential>
+  </macrodef>
+
+  <!-- Макрос для получения изменений из удалённого репозитория в свой. -->
+  <macrodef name="vcs_pull">
+    <attribute name="url"/>
+    <sequential>
+      <vcs_call command="pull" related="@{url}"/>
+    </sequential>
+  </macrodef>
+
+  <!-- Макрос для обновления дерева кода из своего репозитория. -->
+  <macrodef name="vcs_update">
+    <attribute name="url"/>
+    <sequential>
+      <vcs_call command="update" related="@{url}"/>
+    </sequential>
+  </macrodef>
+
+</project>

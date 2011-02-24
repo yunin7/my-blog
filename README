@@ -1,0 +1,2 @@
+wajig install ant ant-contrib python-virtualenv python-setuptools git mercurial subversion
+

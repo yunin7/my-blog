@@ -1,0 +1,14 @@
+
+clean:
+   [delete] Deleting /home/yunin7/devel/project/skypebot/http.pyc
+   [delete] Deleting /home/yunin7/devel/project/src/__init__.pyc
+   [delete] Deleting /home/yunin7/devel/project/src/blog/__init__.pyc
+   [delete] Deleting /home/yunin7/devel/project/src/blog/models.pyc
+   [delete] Deleting /home/yunin7/devel/project/src/blog/urls.pyc
+   [delete] Deleting /home/yunin7/devel/project/src/blog/views.pyc
+   [delete] Deleting /home/yunin7/devel/project/src/settings.pyc
+   [delete] Deleting /home/yunin7/devel/project/src/urls.pyc
+   [delete] Deleting: /home/yunin7/devel/project/cumulative.conf
+   [delete] Deleting: /home/yunin7/devel/project/src/settings.py
+
+BUILD SUCCESSFUL
